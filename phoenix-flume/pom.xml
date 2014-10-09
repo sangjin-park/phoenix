@@ -113,6 +113,7 @@
           <groupId>org.apache.hbase</groupId>
           <artifactId>hbase-testing-util</artifactId>
           <version>${hbase-hadoop1.version}</version>
+          <scope>test</scope>
           <exclusions>
             <exclusion>
               <groupId>org.jruby</groupId>
@@ -199,6 +200,7 @@
           <groupId>org.apache.hbase</groupId>
           <artifactId>hbase-testing-util</artifactId>
           <version>${hbase-hadoop2.version}</version>
+          <scope>test</scope>
           <exclusions>
             <exclusion>
               <groupId>org.jruby</groupId>
