@@ -19,6 +19,7 @@ package org.apache.phoenix.schema;
 
 import static org.junit.Assert.assertEquals;
 
+import org.apache.hadoop.hbase.util.Bytes;
 import org.apache.phoenix.exception.SQLExceptionCode;
 import org.apache.phoenix.util.SchemaUtil;
 import org.junit.Test;
@@ -38,6 +39,13 @@ public class SchemaUtilTest {
         tableDisplayName = SchemaUtil.getTableName(null, "tableName");
         assertEquals(tableDisplayName, "tableName");
     }
+
+	@Test
+	public void testGetTableNameFromFullNameByte() {
+		String tableDisplayName = SchemaUtil.getTableNameFromFullName(Bytes.toBytes("schemaName.tableName"));
+		assertEquals(tableDisplayName, "tableName");
+	}
+
 
     @Test
     public void testGetColumnName() {

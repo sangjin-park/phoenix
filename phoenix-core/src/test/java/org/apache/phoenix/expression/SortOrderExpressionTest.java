@@ -26,10 +26,13 @@ import java.sql.Date;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Locale;
 
 import org.apache.hadoop.hbase.filter.CompareFilter.CompareOp;
 import org.apache.hadoop.hbase.io.ImmutableBytesWritable;
 import org.junit.Test;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 
 import com.google.common.collect.Lists;
 import org.apache.phoenix.expression.function.FunctionArgumentType;
@@ -56,7 +59,21 @@ import org.apache.phoenix.util.DateUtil;
  * @since 1.2
  */
 public class SortOrderExpressionTest {
-    
+
+	// This test changes to locale to en_US, and saves the previous locale here
+	private static Locale saveLocale;
+
+	@BeforeClass
+	public static void setUpBeforeClass() {
+		saveLocale = Locale.getDefault();
+		Locale.setDefault(Locale.US);
+	}
+
+	@AfterClass
+	public static void tearDownAfterClass() {
+		Locale.setDefault(saveLocale);
+	}
+
     @Test
     public void substr() throws Exception {
         List<Expression> args = Lists.newArrayList(getInvertedLiteral("blah", PDataType.CHAR), getLiteral(3), getLiteral(2));
